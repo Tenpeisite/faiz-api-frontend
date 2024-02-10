@@ -213,18 +213,43 @@ export const InterfaceInfoModalFormColumns: ProFormColumnsType<API.ProductInfo, 
     },
   },
   {
-    title: '请求示例',
-    key: "requestExample",
-    dataIndex: 'description',
+    title: '方法名称',
+    dataIndex: 'methodName',
+    tooltip: "sdk中对应的方法名称",
+    width: 'lg',
+    key: "methodName",
+    colProps: {
+      span: 12,
+    }, formItemProps: {
+      rules: [
+        () => ({
+          validator(_, value) {
+            if (!value) {
+              return Promise.reject(new Error("扣除积分个数为必填项"));
+            }
+            if (value < 0) {
+              return Promise.reject(new Error("扣除积分个数不能为负数"));
+            }
+            return Promise.resolve();
+          },
+          required: true,
+        })],
+    },
+  },
+  {
+    title: '返回格式',
+    key: "returnFormat",
+    dataIndex: 'returnFormat',
     width: 'lg',
     valueType: "text",
     colProps: {
       span: 12,
     },
-  }, {
-    title: '返回格式',
-    key: "returnFormat",
-    dataIndex: 'returnFormat',
+  },
+  {
+    title: '请求示例',
+    key: "requestExample",
+    dataIndex: 'description',
     width: 'lg',
     valueType: "text",
     colProps: {

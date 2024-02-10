@@ -108,7 +108,7 @@ const Login: React.FC = () => {
             minWidth: 280,
             maxWidth: '75vw',
           }}
-          logo={<img alt="logo" src="/logo.gif"/>}
+          logo={<img alt="logo" src="/faiz.png"/>}
           title="Faiz-API 接口开放平台"
           subTitle={'Faiz-API 接口开放平台致力于提供稳定、安全、高效的接口调用服务'}
           initialValues={{

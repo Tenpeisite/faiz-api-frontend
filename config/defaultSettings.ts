@@ -15,7 +15,7 @@ const Settings: ProLayoutProps & {
   splitMenus: false,
   title: 'Faiz-API 接口开放平台',
   pwa: false,
-  // logo: 'https://img.qimuu.icu/typory/logo.gif',
-  iconfontUrl: 'https://img.qimuu.icu/typory/logo.gif',
+  // logo: 'https://img.qimuu.icu/typory/faiz.png',
+  iconfontUrl: 'https://img.qimuu.icu/typory/faiz.png',
 };
 export default Settings;
