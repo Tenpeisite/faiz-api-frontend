@@ -16,12 +16,12 @@ const Footer: React.FC = () => {
       // @ts-ignore
       copyright={<>
         {`${currentYear} ${defaultMessage}`} |{' '}
-        <a target={'_blank'} href={"https://beian.miit.gov.cn/"} rel="noreferrer"> 豫ICP备2023004098号-1</a>
+        <a target={'_blank'} href={"https://beian.miit.gov.cn/"} rel="noreferrer"> 赣ICP备2022007945号</a>
         {" | "}
-        <a target={'_blank'} href={'https://www.beian.gov.cn/portal/registerSystemInfo?recordcode=41172702000163'}
+        <a target={'_blank'} href={'https://beian.mps.gov.cn/#/query/webSearch?code=36078102000088'}
            rel="noreferrer">
           <img src="https://img.qimuu.icu/typory/%E5%A4%87%E6%A1%88%E5%9B%BE%E6%A0%87.png"
-               alt={'豫公网安备 41172702000163号'}/> 豫公网安备 41172702000163号
+               alt={'豫公网安备 41172702000163号'}/> 赣公网安备36078102000088
         </a>
 
       </>}
@@ -33,7 +33,7 @@ const Footer: React.FC = () => {
               <GithubOutlined/> 支持项目
             </Tooltip>
           ),
-          href: 'https://github.com/Tenpeisite/faiz-api',
+          href: 'https://github.com/Tenpeisite/faiz-api-backend',
           blankTarget: true,
         },
         // {

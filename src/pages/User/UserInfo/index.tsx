@@ -463,7 +463,7 @@ const UserInfo: React.FC = () => {
           bordered
         >
           <Button size={"large"}>
-            <a target={"_blank"} href={"https://github.com/qimu666/Faiz-API-sdk"}
+            <a target={"_blank"} href={"https://github.com/Tenpeisite/faiz-api-backend-backend"}
                rel="noreferrer"><VerticalAlignBottomOutlined/> Java SDK</a>
           </Button>
         </ProCard>

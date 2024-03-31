@@ -46,7 +46,7 @@ const InterfaceInfo: React.FC = () => {
   const [totalInvokes, setTotalInvokes] = useState<number>(0);
   const [javaCode, setJavaCode] = useState<any>();
   const [returnCode, setReturnCode] = useState<any>(returnExample);
-  const docUrl = process.env.NODE_ENV === 'production' ? "https://doc.qimuu.icu" : 'http://localhost:8080'
+  const docUrl = process.env.NODE_ENV === 'production' ? "https://tenpeisite.gitee.io" : 'https://tenpeisite.gitee.io'
   const {initialState} = useModel('@@initialState');
   const {loginUser} = initialState || {}
   const loadedData = async () => {
@@ -239,7 +239,7 @@ const InterfaceInfo: React.FC = () => {
         </Link>}
       >
         <Button size={"large"}>
-          <a target={"_blank"} href={"https://github.com/qimu666/Faiz-API-sdk"}
+          <a target={"_blank"} href={"https://github.com/Tenpeisite/faiz-api-backend-backend"}
              rel="noreferrer"><VerticalAlignBottomOutlined/> Java SDK</a>
         </Button>
       </ProCard>)}

@@ -97,8 +97,8 @@ const InterfaceSquare: React.FC = () => {
                 }}>
                   <Badge count={item.totalInvokes} overflowCount={999999999} color='#eb4d4b'>
                     <Image style={{width: 80, borderRadius: 8, marginLeft: 10}}
-                           src={item?.avatarUrl ?? "https://img.qimuu.icu/typory/faiz.png"}
-                           fallback={"https://img.qimuu.icu/typory/faiz.png"}
+                           src={item?.avatarUrl ?? "http://blog.tempeisite.xyz/2024/02/18/cd7e282a00d340d7869998e6e85266ba.jpg"}
+                           fallback={"http://blog.tempeisite.xyz/2024/02/18/cd7e282a00d340d7869998e6e85266ba.jpg"}
                            alt={item.name}
                            preview={false}
                     />

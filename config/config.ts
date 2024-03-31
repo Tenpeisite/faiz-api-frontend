@@ -137,4 +137,5 @@ export default defineConfig({
     strategy: 'normal',
   },
   requestRecord: {},
+  exportStatic: {},
 });

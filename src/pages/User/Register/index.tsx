@@ -140,7 +140,7 @@ const Register: React.FC = () => {
           initialValues={{
             invitationCode: invitationCode
           }}
-          actions={['其他登录方式 :', <ActionIcons key="icons"/>]}
+          // actions={['其他登录方式 :', <ActionIcons key="icons"/>]}
           onFinish={async (values) => {
             if (type === "account") {
               await handleSubmit(values as API.UserRegisterRequest);

@@ -114,7 +114,7 @@ const Login: React.FC = () => {
           initialValues={{
             autoLogin: true,
           }}
-          actions={['其他登录方式 :', <ActionIcons key="icons"/>]}
+          // actions={['其他登录方式 :', <ActionIcons key="icons"/>]}
           onFinish={async (values) => {
             if (type === "account") {
               await handleSubmit(values as API.UserLoginRequest);
@@ -147,7 +147,7 @@ const Login: React.FC = () => {
                   size: 'large',
                   prefix: <UserOutlined/>,
                 }}
-                placeholder={'请输入账号'}
+                placeholder={'体验账号:blade'}
                 rules={[
                   {
                     required: true,
@@ -161,7 +161,7 @@ const Login: React.FC = () => {
                   size: 'large',
                   prefix: <LockOutlined/>,
                 }}
-                placeholder={'请输入密码'}
+                placeholder={'密码:123456'}
                 rules={[
                   {
                     required: true,
