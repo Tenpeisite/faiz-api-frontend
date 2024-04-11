@@ -428,34 +428,34 @@ const UserInfo: React.FC = () => {
           </Button>
         </ProCard>
         <br/>
-        <ProCard
-          ref={ref3}
-          bordered
-          type="inner"
-          title={"开发者凭证（调用接口的凭证）"}
-          extra={
-            <Button
-              loading={voucherLoading}
-              onClick={updateVoucher}>{(loginUser?.accessKey && loginUser?.secretKey) ? "更新" : "生成"}凭证</Button>
-          }
-        >
-          {
-            (loginUser?.accessKey && loginUser?.secretKey) ? (
-              <Descriptions column={1}>
-                <Descriptions.Item label="AccessKey">
-                  <Paragraph copyable={valueLength(loginUser?.accessKey)}>
-                    {loginUser?.accessKey}
-                  </Paragraph>
-                </Descriptions.Item>
-                <Descriptions.Item label="SecretKey">
-                  <Paragraph copyable={valueLength(loginUser?.secretKey)}>
-                    {loginUser?.secretKey}
-                  </Paragraph>
-                </Descriptions.Item>
-              </Descriptions>) : "暂无凭证,请先生成凭证"
-          }
-        </ProCard>
-        <br/>
+        {/*<ProCard*/}
+        {/*  ref={ref3}*/}
+        {/*  bordered*/}
+        {/*  type="inner"*/}
+        {/*  title={"开发者凭证（调用接口的凭证）"}*/}
+        {/*  extra={*/}
+        {/*    <Button*/}
+        {/*      loading={voucherLoading}*/}
+        {/*      onClick={updateVoucher}>{(loginUser?.accessKey && loginUser?.secretKey) ? "更新" : "生成"}凭证</Button>*/}
+        {/*  }*/}
+        {/*>*/}
+        {/*  {*/}
+        {/*    (loginUser?.accessKey && loginUser?.secretKey) ? (*/}
+        {/*      <Descriptions column={1}>*/}
+        {/*        <Descriptions.Item label="AccessKey">*/}
+        {/*          <Paragraph copyable={valueLength(loginUser?.accessKey)}>*/}
+        {/*            {loginUser?.accessKey}*/}
+        {/*          </Paragraph>*/}
+        {/*        </Descriptions.Item>*/}
+        {/*        <Descriptions.Item label="SecretKey">*/}
+        {/*          <Paragraph copyable={valueLength(loginUser?.secretKey)}>*/}
+        {/*            {loginUser?.secretKey}*/}
+        {/*          </Paragraph>*/}
+        {/*        </Descriptions.Item>*/}
+        {/*      </Descriptions>) : "暂无凭证,请先生成凭证"*/}
+        {/*  }*/}
+        {/*</ProCard>*/}
+        {/*<br/>*/}
         <ProCard
           ref={ref4}
           type="inner"

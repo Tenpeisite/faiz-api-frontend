@@ -212,13 +212,13 @@ const Welcome: React.FC = () => {
               desc={<Text
                 strong>平台提供了详细的开发者文档和技术支持，帮助开发者快速接入和发布接口，解决遇到的问题和困难。</Text>}
             />
-            <InfoCard
-              index={5}
-              href="https://api.qimuu.icu/"
-              title={<Title level={5}>稳定和安全</Title>}
-              desc={<Text
-                strong>平台致力于提供稳定和安全的接口调用服务，采用了安全措施和技术手段，保障用户数据的安全性和隐私保护。</Text>}
-            />
+            {/*<InfoCard*/}
+            {/*  index={5}*/}
+            {/*  href="https://api.qimuu.icu/"*/}
+            {/*  title={<Title level={5}>稳定和安全</Title>}*/}
+            {/*  desc={<Text*/}
+            {/*    strong>平台致力于提供稳定和安全的接口调用服务，采用了安全措施和技术手段，保障用户数据的安全性和隐私保护。</Text>}*/}
+            {/*/>*/}
           </div>
         </div>
         <GetGiftModal data={data} onCancel={() => setOpen(false)} open={open}/>

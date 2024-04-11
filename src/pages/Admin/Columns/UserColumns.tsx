@@ -176,25 +176,25 @@ export const UserUpdateModalFormColumns: ProFormColumnsType<API.UserVO, "text">[
         })],
     },
   },
-  {
-    title: '密码',
-    key: "userPassword",
-    dataIndex: 'userPassword',
-    width: 'lg',
-    colProps: {
-      span: 24,
-    }, formItemProps: {
-      rules: [
-        () => ({
-          validator(_, value) {
-            if (value && value.length < 0) {
-              return Promise.reject(new Error("用户密码为必填项"));
-            }
-            return Promise.resolve();
-          },
-        })],
-    },
-  },
+  // {
+  //   title: '密码',
+  //   key: "userPassword",
+  //   dataIndex: 'userPassword',
+  //   width: 'lg',
+  //   colProps: {
+  //     span: 24,
+  //   }, formItemProps: {
+  //     rules: [
+  //       () => ({
+  //         validator(_, value) {
+  //           if (value && value.length < 0) {
+  //             return Promise.reject(new Error("用户密码为必填项"));
+  //           }
+  //           return Promise.resolve();
+  //         },
+  //       })],
+  //   },
+  // },
 ];
 
 

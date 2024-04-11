@@ -3,7 +3,6 @@ import {DefaultFooter} from '@ant-design/pro-components';
 import '@umijs/max';
 import React from 'react';
 import {Tooltip} from "antd";
-import wechat from '../../../public/assets/WeChat.jpg';
 
 const Footer: React.FC = () => {
   const defaultMessage = 'Tenpeisite';

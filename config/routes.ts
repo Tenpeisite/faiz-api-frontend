@@ -29,15 +29,37 @@
     name: '接口详情',
     component: './InterfaceInfo',
     hideInMenu: true,
-  }, {
-    path: '/order/list',
-    name: '我的订单',
-    icon: 'ProfileOutlined',
-    component: './Order/OrderList',
   },
   {
+    path: '/order',
+    name: '订单管理',
+    icon: 'crown',
+    routes: [
+      {
+        path: '/order/list',
+        name: '我的订单',
+        icon: 'ProfileOutlined',
+        component: './Order/OrderList',
+      },
+    ],
+  },
+  // {
+  //   path: '/admin',
+  //   name: '接口管理',
+  //   icon: 'crown',
+  //   access: 'canAdmin',
+  //   routes: [
+  //     {
+  //       name: '娱乐接口',
+  //       icon: 'ApiOutlined',
+  //       path: '/admin/interface/list',
+  //       component: './Admin/InterfaceInfoList',
+  //     }
+  //   ],
+  // },
+  {
     path: '/admin',
-    name: '管理页',
+    name: '系统管理',
     icon: 'crown',
     access: 'canAdmin',
     routes: [
@@ -58,6 +80,25 @@
         icon: 'TeamOutlined',
         path: '/admin/user/list',
         component: './Admin/UserList',
+      },
+    ],
+  },
+  {
+    path: '/account',
+    name: '个人中心',
+    icon: 'TeamOutlined',
+    routes: [
+      {
+        path: '/account/userInfo',
+        name: '个人信息',
+        icon: 'UserOutlined',
+        component: './Order/OrderList',
+      },
+      {
+        path: '/account/keys',
+        name: '密钥管理',
+        icon: 'KeyOutlined',
+        component: './User/KeyList',
       },
     ],
   },
