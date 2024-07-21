@@ -2,9 +2,9 @@ import {history, useParams} from "@@/exports";
 import React, {useEffect, useState} from "react";
 import {Badge, Button, Card, Descriptions, message, Popconfirm, Spin, Tag, Tooltip} from "antd";
 import {
-  closedProductOrderUsingPOST,
-  deleteProductOrderUsingPOST,
-  getProductOrderByIdUsingGET
+  closedProductOrderUsingPost,
+  deleteProductOrderUsingPost,
+  getProductOrderByIdUsingGet
 } from "@/services/qiApi-backend/orderController";
 import {orderPayTypeEnum, orderStatusEnum} from "@/enum/commonEnum";
 import ProCard from "@ant-design/pro-card";
@@ -31,7 +31,7 @@ export default () => {
       return
     }
     setLoading(true)
-    const res = await getProductOrderByIdUsingGET({id: params.id})
+    const res = await getProductOrderByIdUsingGet({id: params.id})
     if (res.data && res.code === 0) {
       setData(res.data)
 
@@ -53,7 +53,7 @@ export default () => {
     const hide = message.loading('正在取消订单');
     if (!record) return true;
     try {
-      const res = await closedProductOrderUsingPOST({
+      const res = await closedProductOrderUsingPost({
         orderNo: record.orderNo
       });
       hide();
@@ -80,7 +80,7 @@ export default () => {
     const hide = message.loading('正在删除订单');
     if (!record) return true;
     try {
-      const res = await deleteProductOrderUsingPOST({
+      const res = await deleteProductOrderUsingPost({
         id: record.id
       });
       hide();

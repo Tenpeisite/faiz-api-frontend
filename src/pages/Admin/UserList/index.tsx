@@ -8,13 +8,13 @@ import ModalForm from "@/pages/Admin/Components/ModalForm";
 
 import UserColumns, {UserAddModalFormColumns, UserUpdateModalFormColumns} from "@/pages/Admin/Columns/UserColumns";
 import {
-  addUserUsingPOST,
-  banUserUsingPOST,
-  deleteUserUsingPOST,
-  listUserByPageUsingGET,
-  normalUserUsingPOST,
-  updateUserUsingPOST
+  addUserUsingPost, banUserUsingPost,
+  deleteUserUsingPost,
+  listUserByPageUsingGet,
+  normalUserUsingPost, updateUserAvatarUrlUsingPost,
+  updateUserUsingPost
 } from "@/services/qiApi-backend/userController";
+import UploadModal from "@/components/UploadModal";
 
 
 const UserList: React.FC = () => {
@@ -32,6 +32,8 @@ const UserList: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const actionRef = useRef<ActionType>();
   const [currentRow, setCurrentRow] = useState<API.UserVO>();
+  const [modalOpen, setModalOpen] = useState(false);
+
 
   /**
    * @en-US Add node
@@ -41,7 +43,7 @@ const UserList: React.FC = () => {
   const handleAdd = async (fields: API.UserAddRequest) => {
     const hide = message.loading('正在添加');
     try {
-      const res = await addUserUsingPOST({
+      const res = await addUserUsingPost({
         ...fields,
       });
       if (res.data && res.code === 0) {
@@ -66,7 +68,7 @@ const UserList: React.FC = () => {
     const hide = message.loading('解封中');
     if (!record) return true;
     try {
-      const res = await normalUserUsingPOST({
+      const res = await normalUserUsingPost({
         id: record.id,
       });
       hide();
@@ -92,7 +94,7 @@ const UserList: React.FC = () => {
     const hide = message.loading('封号中');
     if (!record) return true;
     try {
-      const res = await banUserUsingPOST({
+      const res = await banUserUsingPost({
         id: record.id,
       });
       hide();
@@ -108,6 +110,40 @@ const UserList: React.FC = () => {
     }
   };
 
+
+  /**
+   * @en-US Update node
+   * @zh-CN 更新接口图片
+   *
+   */
+  const handleUpdateAvatar = async (url: string) => {
+    if (!url) {
+      message.warning('请选择图片！');
+      return;
+    }
+    const hide = message.loading('修改中');
+    try {
+      const res = await updateUserAvatarUrlUsingPost(
+        {
+          id: currentRow?.id,
+          userAvatar: url
+        }
+      );
+      if (res.data && res.code === 0) {
+        hide();
+        message.success('修改成功');
+        setModalOpen(false);
+        actionRef.current?.reload()
+        return true;
+      }
+    } catch (error: any) {
+      hide();
+      message.error('修改失败' + error.message);
+      setModalOpen(false);
+      return false;
+    }
+  };
+
   /**
    * @en-US Update node
    * @zh-CN 更新节点
@@ -117,15 +153,17 @@ const UserList: React.FC = () => {
   const handleUpdate = async (fields: API.UserUpdateRequest) => {
     const hide = message.loading('修改中');
     try {
-      const res = await updateUserUsingPOST({id: currentRow?.id, ...fields});
+      const res = await updateUserUsingPost({id: currentRow?.id, ...fields});
       if (res.data && res.code === 0) {
         hide();
         message.success('修改成功');
+        setModalOpen(false);
         return true;
       }
     } catch (error: any) {
       hide();
       message.error('修改失败' + error.message);
+      setModalOpen(false);
       return false;
     }
   };
@@ -139,7 +177,7 @@ const UserList: React.FC = () => {
     const hide = message.loading('正在删除');
     if (!record) return true;
     try {
-      const res = await deleteUserUsingPOST({
+      const res = await deleteUserUsingPost({
         id: record.id,
       });
       hide();
@@ -202,6 +240,15 @@ const UserList: React.FC = () => {
             封号
           </a>
         ) : null,
+        <a
+          key="upload"
+          onClick={async () => {
+            setCurrentRow(record);
+            setModalOpen(true)
+          }}
+        >
+          更新头像
+        </a>,
         <Popconfirm
           key={'Delete'}
           title="请确认是否删除该用户!"
@@ -248,7 +295,7 @@ const UserList: React.FC = () => {
         pagination={{defaultPageSize: 10}}
         request={async (params) => {
           setLoading(true)
-          const res = await listUserByPageUsingGET({...params});
+          const res = await listUserByPageUsingGet({...params});
           if (res.data) {
             setLoading(false)
             return {
@@ -306,7 +353,12 @@ const UserList: React.FC = () => {
         columns={UserUpdateModalFormColumns} width={"480px"}
         size={"large"}
       />
-
+      <UploadModal
+        url={currentRow?.userAvatar}
+        onCancel={() => setModalOpen(false)}
+        open={modalOpen}
+        onSubmit={handleUpdateAvatar}
+      />
     </Card>
   );
 };

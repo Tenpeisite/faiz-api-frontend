@@ -3,9 +3,9 @@ import {Button, Card, message, Spin, Tooltip} from "antd";
 import ProCard, {CheckCard} from "@ant-design/pro-card";
 import KunCoin from "@/components/Icon/KunCoin";
 import {history, useModel} from "@umijs/max";
-import {listProductInfoByPageUsingGET} from "@/services/qiApi-backend/productInfoController";
+import {listProductInfoByPageUsingGet, listProductInfoUsingGet} from "@/services/qiApi-backend/productInfoController";
 import wechat from "../../../public/assets/WeChat.jpg";
-import {getLoginUserUsingGET} from "@/services/qiApi-backend/userController";
+import {getLoginUserUsingGet} from "@/services/qiApi-backend/userController";
 import Settings from "../../../config/defaultSettings";
 
 const PayOrder: React.FC = () => {
@@ -23,7 +23,7 @@ const PayOrder: React.FC = () => {
   }, [total])
 
   const loadData = async () => {
-    const userdata = await getLoginUserUsingGET();
+    const userdata = await getLoginUserUsingGet();
     if (userdata.data && userdata.code === 0) {
       if (initialState?.settings.navTheme === "light") {
         setInitialState({loginUser: userdata.data, settings: {...Settings, navTheme: "light"}})
@@ -32,9 +32,9 @@ const PayOrder: React.FC = () => {
       }
     }
     setLoading(true)
-    const res = await listProductInfoByPageUsingGET({});
+    const res = await listProductInfoUsingGet({});
     if (res.data && res.code === 0) {
-      setProduct(res.data.records || [])
+      setProduct(res.data || [])
       setLoading(false)
     }
   }

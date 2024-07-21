@@ -3,7 +3,7 @@
 import { request } from '@umijs/max';
 
 /** addProductInfo POST /api/productInfo/add */
-export async function addProductInfoUsingPOST(
+export async function addProductInfoUsingPost(
   body: API.ProductInfoAddRequest,
   options?: { [key: string]: any },
 ) {
@@ -18,7 +18,7 @@ export async function addProductInfoUsingPOST(
 }
 
 /** deleteProductInfo POST /api/productInfo/delete */
-export async function deleteProductInfoUsingPOST(
+export async function deleteProductInfoUsingPost(
   body: API.DeleteRequest,
   options?: { [key: string]: any },
 ) {
@@ -33,7 +33,7 @@ export async function deleteProductInfoUsingPOST(
 }
 
 /** getProductInfoById GET /api/productInfo/get */
-export async function getProductInfoByIdUsingGET(
+export async function getProductInfoByIdUsingGet(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
   params: API.getProductInfoByIdUsingGETParams,
   options?: { [key: string]: any },
@@ -48,7 +48,7 @@ export async function getProductInfoByIdUsingGET(
 }
 
 /** listProductInfoBySearchTextPage GET /api/productInfo/get/searchText */
-export async function listProductInfoBySearchTextPageUsingGET(
+export async function listProductInfoBySearchTextPageUsingGet(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
   params: API.listProductInfoBySearchTextPageUsingGETParams,
   options?: { [key: string]: any },
@@ -63,7 +63,7 @@ export async function listProductInfoBySearchTextPageUsingGET(
 }
 
 /** listProductInfo GET /api/productInfo/list */
-export async function listProductInfoUsingGET(
+export async function listProductInfoUsingGet(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
   params: API.listProductInfoUsingGETParams,
   options?: { [key: string]: any },
@@ -78,7 +78,7 @@ export async function listProductInfoUsingGET(
 }
 
 /** listProductInfoByPage GET /api/productInfo/list/page */
-export async function listProductInfoByPageUsingGET(
+export async function listProductInfoByPageUsingGet(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
   params: API.listProductInfoByPageUsingGETParams,
   options?: { [key: string]: any },
@@ -93,7 +93,7 @@ export async function listProductInfoByPageUsingGET(
 }
 
 /** offlineProductInfo POST /api/productInfo/offline */
-export async function offlineProductInfoUsingPOST(
+export async function offlineProductInfoUsingPost(
   body: API.IdRequest,
   options?: { [key: string]: any },
 ) {
@@ -108,7 +108,7 @@ export async function offlineProductInfoUsingPOST(
 }
 
 /** onlineProductInfo POST /api/productInfo/online */
-export async function onlineProductInfoUsingPOST(
+export async function onlineProductInfoUsingPost(
   body: API.IdRequest,
   options?: { [key: string]: any },
 ) {
@@ -123,7 +123,7 @@ export async function onlineProductInfoUsingPOST(
 }
 
 /** updateProductInfo POST /api/productInfo/update */
-export async function updateProductInfoUsingPOST(
+export async function updateProductInfoUsingPost(
   body: API.ProductInfoUpdateRequest,
   options?: { [key: string]: any },
 ) {

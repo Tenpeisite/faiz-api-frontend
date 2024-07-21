@@ -7,12 +7,12 @@ import React, {useRef, useState} from 'react';
 import ModalForm from "@/pages/Admin/Components/ModalForm";
 import ProductInfoModalFormColumns, {ProductInfoColumns} from "@/pages/Admin/Columns/ProductInfoColumns";
 import {
-  addProductInfoUsingPOST,
-  deleteProductInfoUsingPOST,
-  listProductInfoByPageUsingGET,
-  offlineProductInfoUsingPOST,
-  onlineProductInfoUsingPOST,
-  updateProductInfoUsingPOST
+  addProductInfoUsingPost,
+  deleteProductInfoUsingPost,
+  listProductInfoByPageUsingGet,
+  offlineProductInfoUsingPost,
+  onlineProductInfoUsingPost,
+  updateProductInfoUsingPost
 } from "@/services/qiApi-backend/productInfoController";
 
 
@@ -40,7 +40,7 @@ const ProductInfoList: React.FC = () => {
   const handleAdd = async (fields: API.ProductInfoAddRequest) => {
     const hide = message.loading('正在添加');
     try {
-      const res = await addProductInfoUsingPOST({
+      const res = await addProductInfoUsingPost({
         ...fields,
       });
       if (res.data && res.code === 0) {
@@ -64,7 +64,7 @@ const ProductInfoList: React.FC = () => {
   const handleUpdate = async (fields: API.ProductInfoUpdateRequest) => {
     const hide = message.loading('修改中');
     try {
-      const res = await updateProductInfoUsingPOST({id: currentRow?.id, ...fields});
+      const res = await updateProductInfoUsingPost({id: currentRow?.id, ...fields});
       if (res.data && res.code === 0) {
         hide();
         message.success('修改成功');
@@ -88,7 +88,7 @@ const ProductInfoList: React.FC = () => {
     const hide = message.loading('发布中');
     if (!record) return true;
     try {
-      const res = await onlineProductInfoUsingPOST({
+      const res = await onlineProductInfoUsingPost({
         id: record.id,
       });
       hide();
@@ -114,7 +114,7 @@ const ProductInfoList: React.FC = () => {
     const hide = message.loading('下线中');
     if (!record) return true;
     try {
-      const res = await offlineProductInfoUsingPOST({
+      const res = await offlineProductInfoUsingPost({
         id: record.id,
       });
       hide();
@@ -140,7 +140,7 @@ const ProductInfoList: React.FC = () => {
     const hide = message.loading('正在删除');
     if (!record) return true;
     try {
-      const res = await deleteProductInfoUsingPOST({
+      const res = await deleteProductInfoUsingPost({
         id: record.id,
       });
       hide();
@@ -260,7 +260,7 @@ const ProductInfoList: React.FC = () => {
         pagination={{defaultPageSize: 10}}
         request={async (params) => {
           setLoading(true)
-          const res = await listProductInfoByPageUsingGET({...params});
+          const res = await listProductInfoByPageUsingGet({...params});
           if (res.data) {
             setLoading(false)
             return {

@@ -1,6 +1,9 @@
 import {Badge, Button, Card, Descriptions, Form, message, Spin, Table, Tabs, Tag} from 'antd';
 import React, {useEffect, useState} from 'react';
-import {getInterfaceInfoByIdUsingGET, invokeInterfaceUsingPOST} from "@/services/qiApi-backend/interfaceInfoController";
+import {
+  getInterfaceInfoByIdUsingGet,
+  invokeInterfaceInfoUsingPost
+} from "@/services/qiApi-backend/interfaceInfoController";
 
 import CodeHighlighting from "@/components/CodeHighlighting";
 import {InterfaceRequestMethodEnum, statusEnum} from "@/enum/commonEnum";
@@ -36,6 +39,7 @@ const InterfaceInfo: React.FC = () => {
   const [requestParams, setRequestParams] = useState<[]>();
   const [temporaryParams, setTemporaryParams] = useState<any>();
   const [responseParams, setResponseParams] = useState<[]>();
+  const [type, setType] = useState<string>();
   const [requestExampleActiveTabKey, setRequestExampleActiveTabKey] = useState<string>('javadoc');
   const [activeTabKey, setActiveTabKey] = useState<'tools' | 'api' | 'errorCode' | 'sampleCode' | string>('api');
   const [result, setResult] = useState<string>();
@@ -46,7 +50,7 @@ const InterfaceInfo: React.FC = () => {
   const [totalInvokes, setTotalInvokes] = useState<number>(0);
   const [javaCode, setJavaCode] = useState<any>();
   const [returnCode, setReturnCode] = useState<any>(returnExample);
-  const docUrl = process.env.NODE_ENV === 'production' ? "https://tenpeisite.gitee.io" : 'https://tenpeisite.gitee.io'
+  const docUrl = process.env.NODE_ENV === 'production' ? "https://doc.tempeisite.xyz" : 'https://doc.tempeisite.xyz'
   const {initialState} = useModel('@@initialState');
   const {loginUser} = initialState || {}
   const loadedData = async () => {
@@ -57,7 +61,7 @@ const InterfaceInfo: React.FC = () => {
     setLoading(true);
     try {
       // @ts-ignore
-      const res = await getInterfaceInfoByIdUsingGET({id: params.id});
+      const res = await getInterfaceInfoByIdUsingGet({id: params.id});
       if (res.data && res.code === 0) {
         setDate(res.data || {});
         setTotalInvokes(res.data.totalInvokes || 0)
@@ -66,6 +70,7 @@ const InterfaceInfo: React.FC = () => {
         try {
           setRequestParams(requestParams ? JSON.parse(requestParams) : [])
           setResponseParams(responseParams ? JSON.parse(responseParams) : [])
+          setType(res.data.type)
         } catch (e: any) {
           setRequestParams([])
           setResponseParams([])
@@ -93,22 +98,42 @@ const InterfaceInfo: React.FC = () => {
     setActiveTabKey(key);
   };
 
+  // const responseExampleTabList = [
+  //   {
+  //     key: 'api',
+  //     label: <><FileTextOutlined/>API文档</>,
+  //   },
+  //   {
+  //     key: 'tools',
+  //     label: <><BugOutlined/>在线调试工具</>,
+  //   }, {
+  //     key: 'errorCode',
+  //     label: <><FileExclamationOutlined/>错误码参照</>,
+  //   }, {
+  //     key: 'sampleCode',
+  //     label: <><CodeOutlined/>示例代码</>,
+  //   }
+  // ];
+
   const responseExampleTabList = [
     {
       key: 'api',
       label: <><FileTextOutlined/>API文档</>,
     },
+    // {
+    //   key: 'tools',
+    //   label: <><BugOutlined/>在线调试工具</>,
+    // },
+    type === '0' ? {key: 'tools', label: <><BugOutlined/>在线调试工具</>} : null,
     {
-      key: 'tools',
-      label: <><BugOutlined/>在线调试工具</>,
-    }, {
       key: 'errorCode',
       label: <><FileExclamationOutlined/>错误码参照</>,
-    }, {
+    },
+    {
       key: 'sampleCode',
       label: <><CodeOutlined/>示例代码</>,
     }
-  ];
+  ].filter(tab => tab !== null);
 
   const onSearch = async (values: any) => {
     // 未登录跳转到登录页面
@@ -121,15 +146,26 @@ const InterfaceInfo: React.FC = () => {
       });
     }
 
+    // 将 isImageUrl 函数添加到此处
+    function isImageUrl(url) {
+      const imageFormats = /\.(jpeg|jpg|gif|png|bmp)$/i;
+      return imageFormats.test(url);
+    }
+
     setResultLoading(true)
-    const res = await invokeInterfaceUsingPOST({
+    const res = await invokeInterfaceInfoUsingPost({
       id: data?.id,
       ...values
     })
     if (res.code === 0) {
       setTotalInvokes(Number(totalInvokes) + 1)
     }
-    setResult(JSON.stringify(res, null, 4))
+    console.log("res.data:", res.data)
+    if (isImageUrl(res.data)) {
+      setResult(res.data)
+    } else {
+      setResult(JSON.stringify(res, null, 4))
+    }
     setResultLoading(false)
   };
 

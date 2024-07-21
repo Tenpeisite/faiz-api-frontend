@@ -73,7 +73,7 @@ export default defineConfig({
    * @name layout 插件
    * @doc https://umijs.org/docs/max/layout-menu
    */
-  title: 'Faiz-API 接口开放平台',
+  title: '基于Web的AI问答开放平台',
   layout: {
     locale: true,
     ...defaultSettings,

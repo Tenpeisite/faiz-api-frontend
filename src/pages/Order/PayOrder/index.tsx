@@ -8,7 +8,7 @@ import ProCard from "@ant-design/pro-card";
 import Alipay from "@/components/Icon/Alipay";
 import {valueLength} from "@/pages/User/UserInfo";
 import {useParams} from "@@/exports";
-import {createOrderUsingPOST, queryOrderStatusUsingPOST} from "@/services/qiApi-backend/orderController";
+import {createOrderUsingPost, queryOrderStatusUsingPost} from "@/services/qiApi-backend/orderController";
 
 const PayOrder: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
@@ -25,7 +25,7 @@ const PayOrder: React.FC = () => {
     setLoading(true)
     setStatus("loading")
     // @ts-ignore
-    const res = await createOrderUsingPOST({productId: params.id, payType: payType})
+    const res = await createOrderUsingPost({productId: params.id, payType: payType})
     if (res.code === 0 && res.data) {
       setOrder(res.data)
       // @ts-ignore
@@ -44,7 +44,7 @@ const PayOrder: React.FC = () => {
     if (currentTime > expirationTime) {
       setStatus("expired")
     }
-    return await queryOrderStatusUsingPOST({orderNo: order?.orderNo})
+    return await queryOrderStatusUsingPost({orderNo: order?.orderNo})
   }
 
   const toAlipay = async () => {
@@ -53,7 +53,7 @@ const PayOrder: React.FC = () => {
       return;
     }
     setLoading(true)
-    const res = await createOrderUsingPOST({productId: params.id, payType: "ALIPAY"})
+    const res = await createOrderUsingPost({productId: params.id, payType: "ALIPAY"})
     if (res.code === 0 && res.data) {
       message.loading("正在前往收银台,请稍后....")
       setTimeout(() => {
@@ -85,7 +85,7 @@ const PayOrder: React.FC = () => {
       return;
     }
     if (!urlPayType && !payType) {
-      message.error("请选择支付方式")
+      message.warning("请选择支付方式")
       setStatus("expired")
       return
     }

@@ -6,7 +6,7 @@ import React, {useCallback} from 'react';
 import {flushSync} from 'react-dom';
 import HeaderDropdown from '../HeaderDropdown';
 import {valueLength} from "@/pages/User/UserInfo";
-import {userLogoutUsingPOST} from "@/services/qiApi-backend/userController";
+import {userLogoutUsingPost} from "@/services/qiApi-backend/userController";
 import Settings from "../../../config/defaultSettings";
 
 export type GlobalHeaderRightProps = {
@@ -27,7 +27,7 @@ export const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({children}) => 
    * 退出登录，并且将当前的 url 保存
    */
   const loginOut = async () => {
-    await userLogoutUsingPOST();
+    await userLogoutUsingPost();
     const {search, pathname} = window.location;
     const urlParams = new URL(window.location.href).searchParams;
     /** 此方法会跳转到 redirect 参数所在的位置 */
@@ -72,11 +72,11 @@ export const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({children}) => 
   );
 
   const menuItems = [
-    // {
-    //   key: 'center',
-    //   icon: <UserOutlined/>,
-    //   label: '个人中心',
-    // },
+    {
+      key: 'center',
+      icon: <UserOutlined/>,
+      label: '个人中心',
+    },
     {
       key: 'logout',
       icon: <LogoutOutlined/>,

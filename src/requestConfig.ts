@@ -17,7 +17,7 @@ interface ResponseStructure {
  * @doc https://umijs.org/docs/max/request#配置
  */
 export const requestConfig: RequestConfig = {
-  baseURL: process.env.NODE_ENV === 'production' ? "http://api-backend.tempeisite.xyz/" : 'http://localhost:7529',
+  baseURL: process.env.NODE_ENV === 'production' ? "http://api-backend.tempeisite.xyz/" : 'http://localhost:7529/',
   // baseURL: process.env.NODE_ENV === 'production' ? "http://api-backend.tempeisite.xyz/" : 'http://api-backend.tempeisite.xyz/',
   withCredentials: true,
 

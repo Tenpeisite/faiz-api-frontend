@@ -17,17 +17,16 @@ import {RcFile} from "antd/es/upload";
 import {EditOutlined, PlusOutlined, VerticalAlignBottomOutlined} from "@ant-design/icons";
 import ImgCrop from "antd-img-crop";
 import {
-  getLoginUserUsingGET,
-  updateUserUsingPOST,
-  updateVoucherUsingPOST,
-  userBindEmailUsingPOST,
-  userUnBindEmailUsingPOST
+  getLoginUserUsingGet,
+  updateUserUsingPost,
+  userBindEmailUsingPost,
+  userUnBindEmailUsingPost
 } from "@/services/qiApi-backend/userController";
 import Settings from '../../../../config/defaultSettings';
 import Paragraph from "antd/lib/typography/Paragraph";
 import ProCard from "@ant-design/pro-card";
 import {requestConfig} from "@/requestConfig";
-import {doDailyCheckInUsingPOST} from "@/services/qiApi-backend/dailyCheckInController";
+import {doDailyCheckInUsingPost} from "@/services/qiApi-backend/dailyCheckInController";
 import SendGiftModal from "@/components/Gift/SendGift";
 import EmailModal from "@/components/EmailModal";
 
@@ -83,7 +82,7 @@ const UserInfo: React.FC = () => {
 
   const loadData = async () => {
     setLoading(true)
-    const res = await getLoginUserUsingGET();
+    const res = await getLoginUserUsingGet();
     if (res.data && res.code === 0) {
       if (initialState?.settings.navTheme === "light") {
         setInitialState({loginUser: res.data, settings: {...Settings, navTheme: "light"}})
@@ -177,7 +176,7 @@ const UserInfo: React.FC = () => {
 
   const updateVoucher = async () => {
     setVoucherLoading(true)
-    const res = await updateVoucherUsingPOST();
+    const res = await updateVoucherUsingPost();
     if (res.data && res.code === 0) {
       setInitialState({loginUser: res.data, settings: Settings})
       setTimeout(() => {
@@ -193,7 +192,7 @@ const UserInfo: React.FC = () => {
       // @ts-ignore
       avatarUrl = fileList[0].url
     }
-    const res = await updateUserUsingPOST({
+    const res = await updateUserUsingPost({
       // @ts-ignore
       userAvatar: avatarUrl,
       id: loginUser?.id,
@@ -261,7 +260,7 @@ const UserInfo: React.FC = () => {
   const handleBindEmailSubmit = async (values: API.UserBindEmailRequest) => {
     try {
       // 绑定邮箱
-      const res = await userBindEmailUsingPOST({
+      const res = await userBindEmailUsingPost({
         ...values,
       });
       if (res.data && res.code === 0) {
@@ -281,7 +280,7 @@ const UserInfo: React.FC = () => {
   const handleUnBindEmailSubmit = async (values: API.UserUnBindEmailRequest) => {
     try {
       // 绑定邮箱
-      const res = await userUnBindEmailUsingPOST({...values});
+      const res = await userUnBindEmailUsingPost({...values});
       if (res.data && res.code === 0) {
         if (initialState?.settings.navTheme === "light") {
           setInitialState({loginUser: res.data, settings: {...Settings, navTheme: "light"}})
@@ -406,9 +405,9 @@ const UserInfo: React.FC = () => {
           <Button loading={dailyCheckInLoading}
                   style={{marginRight: 10}} type={"primary"} onClick={async () => {
             setDailyCheckInLoading(true)
-            const res = await doDailyCheckInUsingPOST()
+            const res = await doDailyCheckInUsingPost()
             if (res.data && res.code === 0) {
-              const res = await getLoginUserUsingGET();
+              const res = await getLoginUserUsingGet();
               if (res.data && res.code === 0) {
                 message.success("签到成功")
                 setInitialState({loginUser: res.data, settings: Settings})

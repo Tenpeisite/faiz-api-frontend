@@ -15,9 +15,9 @@ const SendGiftModal: React.FC<Props> = (props) => {
   const {open, onCancel, invitationCode} = props;
   const [api, contextHolder] = notification.useNotification();
 
-  const randomTexts = ["注册即送100积分💰奖励，Faiz-API 接口开放平台为您提供稳定、安全、高效的接口调用服务！",
-    "免费领取100积分💰奖励，通过链接注册，Faiz-API 接口开放平台为您提供稳定、安全、高效的接口调用服务！",
-    "通过链接注册，即可获得100积分💰奖励，Faiz-API 接口开放平台为您提供稳定、安全、高效的接口调用服务！"];
+  const randomTexts = ["注册即送100积分💰奖励，基于Web的AI问答开放平台为您提供稳定、安全、高效的接口调用服务！",
+    "免费领取100积分💰奖励，通过链接注册，基于Web的AI问答开放平台为您提供稳定、安全、高效的接口调用服务！",
+    "通过链接注册，即可获得100积分💰奖励，基于Web的AI问答开放平台为您提供稳定、安全、高效的接口调用服务！"];
   const [giftValue, setGiftValue] = useState(``);
 
   const generateRandomText = () => {

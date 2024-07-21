@@ -3,7 +3,7 @@
 import { request } from '@umijs/max';
 
 /** closedProductOrder POST /api/order/closed */
-export async function closedProductOrderUsingPOST(
+export async function closedProductOrderUsingPost(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
   params: API.closedProductOrderUsingPOSTParams,
   options?: { [key: string]: any },
@@ -18,7 +18,7 @@ export async function closedProductOrderUsingPOST(
 }
 
 /** createOrder POST /api/order/create */
-export async function createOrderUsingPOST(
+export async function createOrderUsingPost(
   body: API.PayCreateRequest,
   options?: { [key: string]: any },
 ) {
@@ -33,7 +33,7 @@ export async function createOrderUsingPOST(
 }
 
 /** deleteProductOrder POST /api/order/delete */
-export async function deleteProductOrderUsingPOST(
+export async function deleteProductOrderUsingPost(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
   params: API.deleteProductOrderUsingPOSTParams,
   options?: { [key: string]: any },
@@ -48,7 +48,7 @@ export async function deleteProductOrderUsingPOST(
 }
 
 /** getProductOrderById GET /api/order/get */
-export async function getProductOrderByIdUsingGET(
+export async function getProductOrderByIdUsingGet(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
   params: API.getProductOrderByIdUsingGETParams,
   options?: { [key: string]: any },
@@ -63,7 +63,7 @@ export async function getProductOrderByIdUsingGET(
 }
 
 /** listProductOrderByPage GET /api/order/list/page */
-export async function listProductOrderByPageUsingGET(
+export async function listProductOrderByPageUsingGet(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
   params: API.listProductOrderByPageUsingGETParams,
   options?: { [key: string]: any },
@@ -78,7 +78,7 @@ export async function listProductOrderByPageUsingGET(
 }
 
 /** parseOrderNotifyResult POST /api/order/notify/order */
-export async function parseOrderNotifyResultUsingPOST(
+export async function parseOrderNotifyResultUsingPost(
   body: string,
   options?: { [key: string]: any },
 ) {
@@ -93,7 +93,7 @@ export async function parseOrderNotifyResultUsingPOST(
 }
 
 /** queryOrderStatus POST /api/order/query/status */
-export async function queryOrderStatusUsingPOST(
+export async function queryOrderStatusUsingPost(
   body: API.ProductOrderQueryRequest,
   options?: { [key: string]: any },
 ) {

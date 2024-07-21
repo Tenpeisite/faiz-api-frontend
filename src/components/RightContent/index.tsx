@@ -15,7 +15,7 @@ export const Docs = () => {
       className="anticon"
       style={{fontSize: 14, fontWeight: "bold"}}
       onClick={() => {
-        window.open('https://tenpeisite.gitee.io/', '_blank')
+        window.open('https://doc.tempeisite.xyz/', '_blank')
       }}
     >
         📘 开发者文档

@@ -1,6 +1,6 @@
 {
-  "name": "Faiz-API 接口开放平台",
-  "short_name": "Faiz-API 接口开放平台",
+  "name": "基于Web的AI问答开放平台",
+  "short_name": "基于Web的AI问答开放平台",
   "display": "standalone",
   "start_url": "./?utm_source=homescreen",
   "theme_color": "#002140",

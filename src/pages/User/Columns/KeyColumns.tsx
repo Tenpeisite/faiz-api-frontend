@@ -1,135 +1,68 @@
 import {ProColumns} from '@ant-design/pro-components';
-import {Link} from "@@/exports";
+import {Input, Tag} from 'antd';
 
-export const KeyColumns: ProColumns<API.ProductOrderVo>[] = [
+export const KeyStatusEnum: any = {
+  '0': 'green',
+  '1': 'red',
+};
+export const KeyColumns: ProColumns<API.KeyVO>[] = [
   {
-    title: 'id',
-    valueType: 'index',
     dataIndex: 'id',
+    valueType: 'index',
     hideInTable: true,
-    align: "center",
-    key: "id"
-  },
-  {
-    title: '订单名称',
-    dataIndex: 'orderName',
-    align: "center",
-    key: "orderName",
-    ellipsis: true,
-    copyable: true,
-    width: 120,
-    render: (_, record) => (
-      <Link key={record.id} to={`/order/info/${record.id}`}>
-        {record.orderName}
-      </Link>
-    ),
-  },
-  {
-    title: '订单号',
-    align: "center",
-    dataIndex: 'orderNo',
-    key: 'orderNo',
-    ellipsis: true,
-    copyable: true,
-  }, {
-    title: '订单状态',
-    dataIndex: 'status',
-    key: 'status',
-    filters: true,
-    width: "sm",
-    align: "center",
-    onFilter: true,
-    valueEnum: {
-      "NOTPAY": {
-        text: "未支付",
-        status: "Error"
-      },
-      "SUCCESS": {
-        text: "支付成功",
-        status: "Success"
-      },
-      "CLOSED": {
-        text: "已取消",
-        status: 'Default'
-      },
-    }
-  },
-  {
-    title: '订单类型',
-    dataIndex: 'productType',
-    key: 'productType',
-    width: "sm",
-    filters: true,
-    align: "center",
-    onFilter: true,
-    valueEnum: {
-      VIP: {
-        text: 'VIP会员',
-      },
-      RECHARGE: {
-        text: '积分充值',
-      },
-      RECHARGEACTIVITY: {
-        text: "充值活动"
-      }
-    }
-  }, {
-    title: '支付类型',
-    dataIndex: 'payType',
-    key: 'payType',
-    filters: true,
-    width: "sm",
-    align: "center",
-    onFilter: true,
-    valueEnum: {
-      "WX": {text: "微信"},
-      "ALIPAY": {text: "支付宝"}
-    },
-  },
-  {
-    title: '订单金额',
-    dataIndex: 'total',
-    key: 'total',
-    width: "sm",
-    align: "center",
-    valueType: "money",
-    // @ts-ignore
-    sorter: (a, b) => a.total - b.total,
-  },
-  {
-    title: '增加积分数',
-    dataIndex: 'addPoints',
-    width: "sm",
-    key: 'addPoints',
-    align: "center",
-    // @ts-ignore
-    sorter: (a, b) => a.addPoints - b.addPoints,
-  }, {
-    title: '过期时间',
-    dataIndex: 'expirationTime',
-    key: 'expirationTime',
-    valueType: "dateTime",
-    align: "center",
-    hideInSearch: true
+    key: 'id',
+    search: false
   },
   {
     title: '创建时间',
+    width: '15%',
+    align: 'center',
     dataIndex: 'createTime',
-    align: "center",
+    valueType: 'text',
+    ellipsis: true,
     key: 'createTime',
-    valueType: "dateTime",
-    hideInSearch: true
+    search: false,
   },
   {
-    title: '订单描述',
-    dataIndex: 'description',
-    key: 'description',
-    ellipsis: true,
+    title: 'AccessKey/SecretKey',
+    width: '50%',
+    align: 'left',
+    dataIndex: 'keys',
+    valueType: 'text',
+    key: 'keys',
     copyable: true,
-    align: "center",
-    valueType: "text",
-    hideInSearch: true
-  },]
-
+    ellipsis: true,
+    render: (_, record) => (
+      <div>
+        <div>AK:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <Input style={{width: '60%'}} defaultValue={record.keys[0]} readOnly/>
+        </div>
+        <div>SK:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <Input style={{width: '60%'}} defaultValue={record.keys[1]} readOnly/>
+        </div>
+      </div>
+    ),
+  },
+  {
+    title: '状态',
+    align: 'center',
+    onFilter: true,
+    dataIndex: 'status',
+    key: 'status',
+    valueEnum: {
+      '0': {
+        text: '启用',
+      },
+      '1': {
+        text: '禁用',
+      },
+    },
+    render: (_, record) => {
+      const statusText = record.status === '0' ? '启用' : '禁用';
+      return <Tag color={KeyStatusEnum[record.status ?? 'default']}>{statusText}</Tag>;
+    },
+    search: false
+  },
+]
 
 export default KeyColumns;

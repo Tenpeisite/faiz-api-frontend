@@ -19,7 +19,9 @@
   },
   {path: '/:id', name: '欢迎', icon: 'smile', component: './Welcome', hideInMenu: true,},
   {path: '/', name: '欢迎', icon: 'smile', component: './Welcome'},
-  {path: '/interface/list', name: '接口广场', icon: 'RedditOutlined', component: './InterfaceSquare'},
+  {path: '/interfaceSquare', name: '接口广场', icon: 'RedditOutlined', component: './InterfaceSquare'},
+  {path: '/assistantSquare', name: '助手广场', icon: 'DingtalkOutlined', component: './AssistantSquare'},
+  {path: '/chart/bi', name: '智能分析', icon: 'DingtalkOutlined', component: './AddChart'},
   {path: '/recharge/list', icon: "PayCircleOutlined", name: '积分商城', component: './Recharge'},
   {
     path: '/account/center', name: '个人中心', icon: 'UserOutlined', component: './User/UserInfo', hideInMenu: true,
@@ -40,6 +42,20 @@
         name: '我的订单',
         icon: 'ProfileOutlined',
         component: './Order/OrderList',
+      },
+    ],
+  },
+  {
+    path: '/assistant',
+    name: '助手管理',
+    access: 'canUser',
+    icon: 'AndroidOutlined',
+    routes: [
+      {
+        path: '/assistant/list',
+        name: '我的助手',
+        icon: 'RobotOutlined',
+        component: './Assistant/AssistantList',
       },
     ],
   },
@@ -70,6 +86,12 @@
         component: './Admin/InterfaceInfoList',
       },
       {
+        name: '助手管理',
+        icon: 'AndroidOutlined',
+        path: '/admin/assistant/list',
+        component: './Assistant/AssistantList',
+      },
+      {
         name: '商品管理',
         icon: 'table',
         path: '/admin/productInfo/list',
@@ -80,6 +102,12 @@
         icon: 'TeamOutlined',
         path: '/admin/user/list',
         component: './Admin/UserList',
+      },
+      {
+        name: '数据分析',
+        icon: 'LineChartOutlined',
+        path: '/admin/analysis',
+        component: './Admin/analysis/index.tsx',
       },
     ],
   },
@@ -92,7 +120,7 @@
         path: '/account/userInfo',
         name: '个人信息',
         icon: 'UserOutlined',
-        component: './Order/OrderList',
+        component: './User/UserInfo1',
       },
       {
         path: '/account/keys',
@@ -108,8 +136,14 @@
     name: '订单支付',
     component: './Order/PayOrder',
     hideInMenu: true
-  }, {
-    path: '/order/info/:id', icon: "ProfileOutlined", name: '订单详情', component: './Order/OrderInfo', hideInMenu: true
+  },
+  {path: '/order/info/:id', icon: "ProfileOutlined", name: '订单详情', component: './Order/OrderInfo', hideInMenu: true},
+  {
+    path: '/assistant/info/:id',
+    icon: "ProfileOutlined",
+    name: '助手详情',
+    component: './Assistant/AssistantInfo',
+    hideInMenu: true
   },
   {path: '*', layout: false, component: './404'},
 ];

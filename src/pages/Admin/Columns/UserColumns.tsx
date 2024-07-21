@@ -62,10 +62,10 @@ export const UserAddModalFormColumns: ProFormColumnsType<API.UserVO, "text">[] =
     key: "gender",
     valueType: "radio",
     valueEnum: {
-      "0": {
+      "男": {
         text: '男',
       },
-      "1": {
+      "女": {
         text: '女',
       }
     },
@@ -87,26 +87,26 @@ export const UserAddModalFormColumns: ProFormColumnsType<API.UserVO, "text">[] =
       }
     }
   },
-  {
-    title: '余额',
-    key: "balance",
-    dataIndex: 'balance',
-    width: 'lg',
-    colProps: {
-      span: 24,
-    },
-    formItemProps: {
-      rules: [
-        () => ({
-          validator(_, value) {
-            if (value && value < 0) {
-              return Promise.reject(new Error("余额不能为负数"));
-            }
-            return Promise.resolve();
-          },
-        })],
-    },
-  },
+  // {
+  //   title: '余额',
+  //   key: "balance",
+  //   dataIndex: 'balance',
+  //   width: 'lg',
+  //   colProps: {
+  //     span: 24,
+  //   },
+  //   formItemProps: {
+  //     rules: [
+  //       () => ({
+  //         validator(_, value) {
+  //           if (value && value < 0) {
+  //             return Promise.reject(new Error("余额不能为负数"));
+  //           }
+  //           return Promise.resolve();
+  //         },
+  //       })],
+  //   },
+  // },
 ];
 export const UserUpdateModalFormColumns: ProFormColumnsType<API.UserVO, "text">[] = [
   {
@@ -131,10 +131,10 @@ export const UserUpdateModalFormColumns: ProFormColumnsType<API.UserVO, "text">[
     key: "gender",
     valueType: "radio",
     valueEnum: {
-      "0": {
+      "男": {
         text: '男',
       },
-      "1": {
+      "女": {
         text: '女',
       }
     },
@@ -237,6 +237,7 @@ export const UserColumns: ProColumns<API.UserVO>[] = [
     title: '积分',
     dataIndex: 'balance',
     valueType: 'text',
+    hideInSearch: true,
     copyable: true,
     key: 'balance',
     // @ts-ignore
@@ -250,24 +251,24 @@ export const UserColumns: ProColumns<API.UserVO>[] = [
     key: 'invitationCode',
     search: false
   },
-  {
-    title: 'SecretKey',
-    dataIndex: 'secretKey',
-    valueType: 'textarea',
-    copyable: true,
-    ellipsis: true,
-    key: 'secretKey',
-    search: false
-  },
-  {
-    title: 'AccessKey',
-    dataIndex: 'accessKey',
-    valueType: 'textarea',
-    copyable: true,
-    ellipsis: true,
-    key: 'accessKey',
-    search: false
-  },
+  // {
+  //   title: 'SecretKey',
+  //   dataIndex: 'secretKey',
+  //   valueType: 'textarea',
+  //   copyable: true,
+  //   ellipsis: true,
+  //   key: 'secretKey',
+  //   search: false
+  // },
+  // {
+  //   title: 'AccessKey',
+  //   dataIndex: 'accessKey',
+  //   valueType: 'textarea',
+  //   copyable: true,
+  //   ellipsis: true,
+  //   key: 'accessKey',
+  //   search: false
+  // },
   {
     title: '角色/权限',
     dataIndex: 'userRole',
@@ -292,10 +293,10 @@ export const UserColumns: ProColumns<API.UserVO>[] = [
     onFilter: true,
     key: 'gender',
     valueEnum: {
-      0: {
+      '男': {
         text: '男',
       },
-      1: {
+      '女': {
         text: '女',
       }
     }

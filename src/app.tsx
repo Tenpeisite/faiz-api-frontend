@@ -8,7 +8,7 @@ import Footer from '@/components/Footer';
 import {requestConfig} from '@/requestConfig';
 import Settings from '../config/defaultSettings';
 import {valueLength} from "@/pages/User/UserInfo";
-import {getLoginUserUsingGET} from "@/services/qiApi-backend/userController";
+import {getLoginUserUsingGet} from "@/services/qiApi-backend/userController";
 import {FloatButton, message} from 'antd';
 import React from "react";
 import wechat from '../public/assets/WeChat.jpg';
@@ -38,7 +38,7 @@ const stats: InitialState = {
 export async function getInitialState(): Promise<InitialState> {
   console.log(`%c${helloWord}`, 'color:#e59de3')
   try {
-    const res = await getLoginUserUsingGET();
+    const res = await getLoginUserUsingGet();
     if (res.data && res.code === 0) {
       stats.loginUser = res.data;
     }
@@ -71,7 +71,7 @@ export const layout: RunTimeLayoutConfig = ({initialState, setInitialState}) => 
           tooltip={"📘 接口在线文档"}
           icon={<FileTextOutlined/>}
           onClick={() => {
-            location.href = "https://tenpeisite.gitee.io/"
+            location.href = "https://doc.tempeisite.xyz/"
           }
           }
         />

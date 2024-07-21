@@ -13,7 +13,7 @@ import {ProLayoutProps} from '@ant-design/pro-components';
 //   fixSiderbar: true,
 //   colorWeak: false,
 //   splitMenus: false,
-//   title: 'Faiz-API 接口开放平台',
+//   title: '基于Web的AI问答开放平台',
 //   pwa: false,
 //   // logo: 'https://img.qimuu.icu/typory/faiz.png',
 //   iconfontUrl: 'https://img.qimuu.icu/typory/faiz.png',
@@ -31,7 +31,7 @@ const Settings: ProLayoutProps & {
   "fixSiderbar": true,
   "splitMenus": false,
   "siderMenuType": "group",
-  title:'Faiz-API 接口开放平台',
+  title:'基于Web的AI问答开放平台',
   "pwa": true,
   "logo": "http://blog.tempeisite.xyz/2024/03/31/d6c8c7049b34419a97000fa6229c67d7.png"
 }

@@ -24,7 +24,7 @@ const Admin: React.FC = () => {
             textAlign: 'center',
           }}
         >
-          <SmileTwoTone/> Faiz-API 接口开放平台 <HeartTwoTone twoToneColor="#eb2f96"/> You
+          <SmileTwoTone/> 基于Web的AI问答开放平台 <HeartTwoTone twoToneColor="#eb2f96"/> You
         </Typography.Title>
       </Card>
       <p

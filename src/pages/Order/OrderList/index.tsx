@@ -1,9 +1,9 @@
 import {ActionType, ProColumns} from '@ant-design/pro-components';
 import React, {useRef, useState} from "react";
 import {
-  closedProductOrderUsingPOST,
-  deleteProductOrderUsingPOST,
-  listProductOrderByPageUsingGET
+  closedProductOrderUsingPost,
+  deleteProductOrderUsingPost,
+  listProductOrderByPageUsingGet
 } from "@/services/qiApi-backend/orderController";
 import {ProTable} from "@ant-design/pro-table/lib";
 import {message, Popconfirm} from "antd";
@@ -24,7 +24,7 @@ export default () => {
     const hide = message.loading('正在取消订单');
     if (!record) return true;
     try {
-      const res = await closedProductOrderUsingPOST({
+      const res = await closedProductOrderUsingPost({
         orderNo: record.orderNo
       });
       hide();
@@ -49,7 +49,7 @@ export default () => {
     const hide = message.loading('正在删除订单');
     if (!record) return true;
     try {
-      const res = await deleteProductOrderUsingPOST({
+      const res = await deleteProductOrderUsingPost({
         id: record.id
       });
       hide();
@@ -174,7 +174,7 @@ export default () => {
       pagination={{defaultPageSize: 10}}
       request={async (params) => {
         setLoading(true)
-        const res = await listProductOrderByPageUsingGET({...params});
+        const res = await listProductOrderByPageUsingGet({...params});
         if (res.data) {
           setLoading(false)
           return {

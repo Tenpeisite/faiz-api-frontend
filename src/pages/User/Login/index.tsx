@@ -15,7 +15,7 @@ import {message, Tabs} from 'antd';
 import React, {useState} from 'react';
 import Settings from '../../../../config/defaultSettings';
 import {ProFormCaptcha} from "@ant-design/pro-form";
-import {getCaptchaUsingGET, userEmailLoginUsingPOST, userLoginUsingPOST} from "@/services/qiApi-backend/userController";
+import {getCaptchaUsingGet, userEmailLoginUsingPost, userLoginUsingPost} from "@/services/qiApi-backend/userController";
 
 const ActionIcons = () => {
   const langClassName = useEmotionCss(({token}) => {
@@ -49,8 +49,7 @@ const Login: React.FC = () => {
       flexDirection: 'column',
       height: '100vh',
       overflow: 'auto',
-      backgroundImage:
-        "url('https://mdn.alipayobjects.com/yuyan_qk0oxh/afts/img/V-_oS6r-i7wAAAAAAAAAAAAAFl94AQBr')",
+      backgroundImage: 'url(/assets/tencentCloudBackGround.jpg)',
       backgroundSize: '100% 100%',
     };
   });
@@ -67,7 +66,7 @@ const Login: React.FC = () => {
   const handleSubmit = async (values: API.UserLoginRequest) => {
     try {
       // 登录
-      const res = await userLoginUsingPOST({
+      const res = await userLoginUsingPost({
         ...values,
       });
       doLogin(res)
@@ -80,7 +79,7 @@ const Login: React.FC = () => {
   const handleEmailSubmit = async (values: API.UserEmailLoginRequest) => {
     try {
       // 登录
-      const res = await userEmailLoginUsingPOST({
+      const res = await userEmailLoginUsingPost({
         ...values,
       });
       doLogin(res)
@@ -109,8 +108,8 @@ const Login: React.FC = () => {
             maxWidth: '75vw',
           }}
           logo={<img alt="logo" src="/faiz.png"/>}
-          title="Faiz-API 接口开放平台"
-          subTitle={'Faiz-API 接口开放平台致力于提供稳定、安全、高效的接口调用服务'}
+          title="基于Web的AI问答开放平台"
+          subTitle={'基于Web的AI问答开放平台致力于提供稳定、安全、高效的接口调用服务'}
           initialValues={{
             autoLogin: true,
           }}
@@ -215,7 +214,7 @@ const Login: React.FC = () => {
                   },
                 ]}
                 onGetCaptcha={async (emailAccount) => {
-                  const res = await getCaptchaUsingGET({emailAccount})
+                  const res = await getCaptchaUsingGet({emailAccount})
                   if (res.data && res.code === 0) {
                     message.success("验证码发送成功")
                     return

@@ -4,20 +4,20 @@ import {Badge, Card, Image, List, Spin} from "antd";
 import Search from "antd/es/input/Search";
 import {history} from "@umijs/max";
 import {
-  listInterfaceInfoByPageUsingGET,
-  listInterfaceInfoBySearchTextPageUsingGET
+  listInterfaceInfoByPageUsingGet,
+  listInterfaceInfoBySearchTextPageUsingGet
 } from "@/services/qiApi-backend/interfaceInfoController";
 
 const InterfaceSquare: React.FC = () => {
   const [data, setData] = useState<API.InterfaceInfo[]>([]);
   const [searchText, setSearchText] = useState<string>('');
   const [total, setTotal] = useState<number>();
-  const [pageSize] = useState<number>(12);
+  const [pageSize] = useState<number>(8);
   const [loading, setLoading] = useState<boolean>(false);
 
   const loadData = async (current = 1) => {
     setLoading(true)
-    const res = await listInterfaceInfoByPageUsingGET({
+    const res = await listInterfaceInfoBySearchTextPageUsingGet({
       current: current,
       name: searchText,
       pageSize: pageSize,
@@ -39,7 +39,7 @@ const InterfaceSquare: React.FC = () => {
   }, []);
 
   const onSearch = async () => {
-    const res = await listInterfaceInfoBySearchTextPageUsingGET({
+    const res = await listInterfaceInfoBySearchTextPageUsingGet({
       current: 1,
       searchText: searchText,
     });
@@ -85,8 +85,8 @@ const InterfaceSquare: React.FC = () => {
             sm: 1,
             md: 2,
             lg: 4,
-            xl: 5,
-            xxl: 6
+            xl: 4,
+            xxl: 4
           }}
           dataSource={data}
           renderItem={(item, index) => (

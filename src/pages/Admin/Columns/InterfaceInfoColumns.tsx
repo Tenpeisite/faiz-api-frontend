@@ -257,6 +257,17 @@ export const InterfaceInfoModalFormColumns: ProFormColumnsType<API.ProductInfo, 
     },
   },
   {
+    title: '接口类型',
+    key: "type",
+    tooltip: "0:正常；1:输出图片；2:输入图片",
+    dataIndex: 'type',
+    width: 'lg',
+    valueType: "text",
+    colProps: {
+      span: 12,
+    },
+  },
+  {
     title: '请求参数',
     dataIndex: 'requestParams',
     tooltip: "请求参数",
@@ -340,6 +351,7 @@ const InterfaceInfoColumns: ProColumns<API.InterfaceInfo>[] = [
     valueType: 'image',
     width: 80,
     key: 'avatarUrl',
+    hideInSearch: true
   },
   {
     title: '扣除积分个数',
@@ -383,6 +395,7 @@ const InterfaceInfoColumns: ProColumns<API.InterfaceInfo>[] = [
     ellipsis: true,
     copyable: true,
     key: 'requestHeader',
+    hideInTable: true
   },
   {
     title: '请求参数',
@@ -393,6 +406,7 @@ const InterfaceInfoColumns: ProColumns<API.InterfaceInfo>[] = [
     ellipsis: true,
     copyable: true,
     key: 'requestParams',
+    hideInTable: true
   },
   // {
   //   title: '响应头',
@@ -464,6 +478,7 @@ const InterfaceInfoColumns: ProColumns<API.InterfaceInfo>[] = [
     valueType: 'dateTime',
     key: 'createTime',
     search: false,
+    hideInTable: true
   },
 ];
 
